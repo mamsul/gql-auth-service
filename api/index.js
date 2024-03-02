@@ -12,7 +12,12 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 
 async function startApolloServer(typeDefs, resolvers) {
-  const server = new ApolloServer({ typeDefs, resolvers });
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    introspection: true,
+    playground: true,
+  });
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
