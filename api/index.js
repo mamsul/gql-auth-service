@@ -9,9 +9,10 @@ const resolvers = require("./resolvers");
 const EXPIRES = process.env.EXPIRES || 600;
 const PORT = process.env.PORT || 4000;
 
+const app = express();
+
 async function startApolloServer(typeDefs, resolvers) {
   const server = new ApolloServer({ typeDefs, resolvers });
-  const app = express();
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
@@ -44,3 +45,5 @@ async function startApolloServer(typeDefs, resolvers) {
 }
 
 startApolloServer(typeDefs, resolvers);
+
+module.exports = app;
